@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main(void) {
+    FILE *arquivo;
+    char nome[50];
+    int matricula;
+
+    arquivo = fopen("funcionarios.txt", "w");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        return 1;
+    }
+
+    for (int i = 0; i < 5; i++) {
+        printf("\nCadastro do funcionario %d\n", i + 1);
+
+        printf("Nome: ");
+        scanf(" %49[^\n]", nome);
+
+        printf("Matricula: ");
+        scanf("%d", &matricula);
+
+        fprintf(arquivo, "Nome: %s\n", nome);
+        fprintf(arquivo, "Matricula: %d\n", matricula);
+        fprintf(arquivo, "----------------------\n");
+    }
+
+    fclose(arquivo);
+
+    printf("\nDados gravados com sucesso!\n");
+
+    return 0;
+}
